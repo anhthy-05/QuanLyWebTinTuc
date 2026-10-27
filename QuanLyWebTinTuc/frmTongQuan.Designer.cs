@@ -110,7 +110,7 @@
             guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             tableLayoutPanel6 = new TableLayoutPanel();
             guna2Panel21 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2HtmlLabel13 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lbl_TongTienPhu = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel20 = new Guna.UI2.WinForms.Guna2Panel();
             lbl_TongDoanhThu = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel19 = new Guna.UI2.WinForms.Guna2Panel();
@@ -120,9 +120,9 @@
             guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             tableLayoutPanel5 = new TableLayoutPanel();
             guna2Panel13 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lbl_GiaoDichPhu = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel12 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lbl_TongGiaoDich = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel11 = new Guna.UI2.WinForms.Guna2Panel();
             guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel10 = new Guna.UI2.WinForms.Guna2Panel();
@@ -130,7 +130,7 @@
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             tableLayoutPanel4 = new TableLayoutPanel();
             guna2Panel17 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lbl_TacGiaPhu = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel16 = new Guna.UI2.WinForms.Guna2Panel();
             lbl_TongTacGia = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel15 = new Guna.UI2.WinForms.Guna2Panel();
@@ -140,7 +140,7 @@
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             tableLayoutPanel3 = new TableLayoutPanel();
             guna2Panel9 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lbl_ChuyenMucPhu = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
             lbl_TongChuyenMuc = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
@@ -219,6 +219,7 @@
             btn_DangXuat.Size = new Size(174, 56);
             btn_DangXuat.TabIndex = 5;
             btn_DangXuat.Text = "Đăng xuất";
+            btn_DangXuat.Click += btn_DangXuat_Click;
             // 
             // btn_GiaoDich
             // 
@@ -389,7 +390,7 @@
             // 
             // guna2Panel21
             // 
-            guna2Panel21.Controls.Add(guna2HtmlLabel13);
+            guna2Panel21.Controls.Add(lbl_TongTienPhu);
             guna2Panel21.CustomizableEdges = customizableEdges15;
             guna2Panel21.Dock = DockStyle.Fill;
             guna2Panel21.Location = new Point(3, 162);
@@ -398,14 +399,14 @@
             guna2Panel21.Size = new Size(397, 50);
             guna2Panel21.TabIndex = 4;
             // 
-            // guna2HtmlLabel13
+            // lbl_TongTienPhu
             // 
-            guna2HtmlLabel13.BackColor = Color.Transparent;
-            guna2HtmlLabel13.Location = new Point(12, 14);
-            guna2HtmlLabel13.Name = "guna2HtmlLabel13";
-            guna2HtmlLabel13.Size = new Size(129, 22);
-            guna2HtmlLabel13.TabIndex = 0;
-            guna2HtmlLabel13.Text = "guna2HtmlLabel13";
+            lbl_TongTienPhu.BackColor = Color.Transparent;
+            lbl_TongTienPhu.Location = new Point(12, 14);
+            lbl_TongTienPhu.Name = "lbl_TongTienPhu";
+            lbl_TongTienPhu.Size = new Size(129, 22);
+            lbl_TongTienPhu.TabIndex = 0;
+            lbl_TongTienPhu.Text = "";
             // 
             // guna2Panel20
             // 
@@ -421,11 +422,12 @@
             // lbl_TongDoanhThu
             // 
             lbl_TongDoanhThu.BackColor = Color.Transparent;
+            lbl_TongDoanhThu.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_TongDoanhThu.Location = new Point(12, 12);
             lbl_TongDoanhThu.Name = "lbl_TongDoanhThu";
             lbl_TongDoanhThu.Size = new Size(129, 22);
             lbl_TongDoanhThu.TabIndex = 0;
-            lbl_TongDoanhThu.Text = "guna2HtmlLabel12";
+            lbl_TongDoanhThu.Text = "0";
             // 
             // guna2Panel19
             // 
@@ -503,7 +505,7 @@
             // 
             // guna2Panel13
             // 
-            guna2Panel13.Controls.Add(guna2HtmlLabel7);
+            guna2Panel13.Controls.Add(lbl_GiaoDichPhu);
             guna2Panel13.CustomizableEdges = customizableEdges27;
             guna2Panel13.Dock = DockStyle.Fill;
             guna2Panel13.Location = new Point(3, 162);
@@ -512,18 +514,18 @@
             guna2Panel13.Size = new Size(396, 50);
             guna2Panel13.TabIndex = 4;
             // 
-            // guna2HtmlLabel7
+            // lbl_GiaoDichPhu
             // 
-            guna2HtmlLabel7.BackColor = Color.Transparent;
-            guna2HtmlLabel7.Location = new Point(17, 25);
-            guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            guna2HtmlLabel7.Size = new Size(121, 22);
-            guna2HtmlLabel7.TabIndex = 0;
-            guna2HtmlLabel7.Text = "guna2HtmlLabel7";
+            lbl_GiaoDichPhu.BackColor = Color.Transparent;
+            lbl_GiaoDichPhu.Location = new Point(17, 25);
+            lbl_GiaoDichPhu.Name = "lbl_GiaoDichPhu";
+            lbl_GiaoDichPhu.Size = new Size(121, 22);
+            lbl_GiaoDichPhu.TabIndex = 0;
+            lbl_GiaoDichPhu.Text = "";
             // 
             // guna2Panel12
             // 
-            guna2Panel12.Controls.Add(guna2HtmlLabel6);
+            guna2Panel12.Controls.Add(lbl_TongGiaoDich);
             guna2Panel12.CustomizableEdges = customizableEdges29;
             guna2Panel12.Dock = DockStyle.Fill;
             guna2Panel12.Location = new Point(3, 109);
@@ -532,14 +534,15 @@
             guna2Panel12.Size = new Size(396, 47);
             guna2Panel12.TabIndex = 3;
             // 
-            // guna2HtmlLabel6
+            // lbl_TongGiaoDich
             // 
-            guna2HtmlLabel6.BackColor = Color.Transparent;
-            guna2HtmlLabel6.Location = new Point(16, 12);
-            guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            guna2HtmlLabel6.Size = new Size(121, 22);
-            guna2HtmlLabel6.TabIndex = 0;
-            guna2HtmlLabel6.Text = "guna2HtmlLabel6";
+            lbl_TongGiaoDich.BackColor = Color.Transparent;
+            lbl_TongGiaoDich.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_TongGiaoDich.Location = new Point(16, 12);
+            lbl_TongGiaoDich.Name = "lbl_TongGiaoDich";
+            lbl_TongGiaoDich.Size = new Size(121, 22);
+            lbl_TongGiaoDich.TabIndex = 0;
+            lbl_TongGiaoDich.Text = "0";
             // 
             // guna2Panel11
             // 
@@ -617,7 +620,7 @@
             // 
             // guna2Panel17
             // 
-            guna2Panel17.Controls.Add(guna2HtmlLabel10);
+            guna2Panel17.Controls.Add(lbl_TacGiaPhu);
             guna2Panel17.CustomizableEdges = customizableEdges39;
             guna2Panel17.Dock = DockStyle.Fill;
             guna2Panel17.Location = new Point(3, 162);
@@ -626,14 +629,14 @@
             guna2Panel17.Size = new Size(397, 50);
             guna2Panel17.TabIndex = 4;
             // 
-            // guna2HtmlLabel10
+            // lbl_TacGiaPhu
             // 
-            guna2HtmlLabel10.BackColor = Color.Transparent;
-            guna2HtmlLabel10.Location = new Point(12, 14);
-            guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            guna2HtmlLabel10.Size = new Size(129, 22);
-            guna2HtmlLabel10.TabIndex = 0;
-            guna2HtmlLabel10.Text = "guna2HtmlLabel10";
+            lbl_TacGiaPhu.BackColor = Color.Transparent;
+            lbl_TacGiaPhu.Location = new Point(12, 14);
+            lbl_TacGiaPhu.Name = "lbl_TacGiaPhu";
+            lbl_TacGiaPhu.Size = new Size(129, 22);
+            lbl_TacGiaPhu.TabIndex = 0;
+            lbl_TacGiaPhu.Text = "";
             // 
             // guna2Panel16
             // 
@@ -649,11 +652,12 @@
             // lbl_TongTacGia
             // 
             lbl_TongTacGia.BackColor = Color.Transparent;
+            lbl_TongTacGia.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_TongTacGia.Location = new Point(12, 12);
             lbl_TongTacGia.Name = "lbl_TongTacGia";
             lbl_TongTacGia.Size = new Size(121, 22);
             lbl_TongTacGia.TabIndex = 0;
-            lbl_TongTacGia.Text = "guna2HtmlLabel9";
+            lbl_TongTacGia.Text = "0";
             // 
             // guna2Panel15
             // 
@@ -731,7 +735,7 @@
             // 
             // guna2Panel9
             // 
-            guna2Panel9.Controls.Add(guna2HtmlLabel4);
+            guna2Panel9.Controls.Add(lbl_ChuyenMucPhu);
             guna2Panel9.CustomizableEdges = customizableEdges51;
             guna2Panel9.Dock = DockStyle.Fill;
             guna2Panel9.Location = new Point(3, 162);
@@ -740,14 +744,14 @@
             guna2Panel9.Size = new Size(396, 50);
             guna2Panel9.TabIndex = 3;
             // 
-            // guna2HtmlLabel4
+            // lbl_ChuyenMucPhu
             // 
-            guna2HtmlLabel4.BackColor = Color.Transparent;
-            guna2HtmlLabel4.Location = new Point(16, 14);
-            guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            guna2HtmlLabel4.Size = new Size(121, 22);
-            guna2HtmlLabel4.TabIndex = 0;
-            guna2HtmlLabel4.Text = "guna2HtmlLabel4";
+            lbl_ChuyenMucPhu.BackColor = Color.Transparent;
+            lbl_ChuyenMucPhu.Location = new Point(16, 14);
+            lbl_ChuyenMucPhu.Name = "lbl_ChuyenMucPhu";
+            lbl_ChuyenMucPhu.Size = new Size(121, 22);
+            lbl_ChuyenMucPhu.TabIndex = 0;
+            lbl_ChuyenMucPhu.Text = "";
             // 
             // guna2Panel8
             // 
@@ -763,11 +767,12 @@
             // lbl_TongChuyenMuc
             // 
             lbl_TongChuyenMuc.BackColor = Color.Transparent;
+            lbl_TongChuyenMuc.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_TongChuyenMuc.Location = new Point(17, 12);
             lbl_TongChuyenMuc.Name = "lbl_TongChuyenMuc";
             lbl_TongChuyenMuc.Size = new Size(3, 2);
             lbl_TongChuyenMuc.TabIndex = 0;
-            lbl_TongChuyenMuc.Text = null;
+            lbl_TongChuyenMuc.Text = "0";
             // 
             // guna2Panel7
             // 
@@ -854,7 +859,10 @@
             Controls.Add(pnl_MainContext);
             Controls.Add(guna2Panel1);
             Name = "frmTongQuan";
-            Text = "TongQuan";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Quản lý trang web tin tức";
+            WindowState = FormWindowState.Maximized;
+            Load += Form1_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
             pnl_MainContext.ResumeLayout(false);
@@ -939,19 +947,19 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel22;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel13;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lbl_TongTienPhu;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbl_TongDoanhThu;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox4;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lbl_GiaoDichPhu;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lbl_TongGiaoDich;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox3;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lbl_TacGiaPhu;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbl_TongTacGia;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lbl_ChuyenMucPhu;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbl_TongChuyenMuc;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;

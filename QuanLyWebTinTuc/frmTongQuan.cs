@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,42 +10,72 @@ namespace QuanLyWebTinTuc
 {
     public partial class frmTongQuan : Form
     {
+        // true khi người dùng bấm Đăng xuất (frmLogin dựa vào đây để hiện lại màn hình đăng nhập)
+        public bool DaDangXuat { get; private set; }
+
         public frmTongQuan()
         {
             InitializeComponent();
         }
 
-        public static class Global
-        {
-            public static string ConnectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=QuanLyTrangWebTinTuc;Integrated Security=True;TrustServerCertificate=True;";
-        }
         private void LoadThongKe()
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
-                {
-                    conn.Open();
+                // 1. Chuyên mục
+                int tongChuyenMuc = Convert.ToInt32(DbHelper.ExecuteScalar("SELECT COUNT(*) FROM ChuyenMucTin"));
+                int tongBaiViet = Convert.ToInt32(DbHelper.ExecuteScalar("SELECT COUNT(*) FROM BaiVietBao"));
+                lbl_TongChuyenMuc.Text = tongChuyenMuc + " Chuyên mục";
+                lbl_ChuyenMucPhu.Text = "Tổng " + tongBaiViet + " bài viết";
 
-                    // 1. Đếm tổng chuyên mục
-                    SqlCommand cmd1 = new SqlCommand("SELECT COUNT(*) FROM ChuyenMucTin", conn);
-                    lbl_TongChuyenMuc.Text = cmd1.ExecuteScalar().ToString() + " Chuyên mục";
+                // 2. Tác giả
+                int tongTacGia = Convert.ToInt32(DbHelper.ExecuteScalar("SELECT COUNT(*) FROM TacGiaTinTuc"));
+                int tacGiaCoBai = Convert.ToInt32(DbHelper.ExecuteScalar("SELECT COUNT(DISTINCT MaTacGia) FROM BaiVietBao"));
+                lbl_TongTacGia.Text = tongTacGia + " Tác giả";
+                lbl_TacGiaPhu.Text = tacGiaCoBai + " tác giả đã có bài viết";
 
-                    // 2. Đếm tổng tác giả
-                    SqlCommand cmd2 = new SqlCommand("SELECT COUNT(*) FROM TacGiaTinTuc", conn);
-                    lbl_TongTacGia.Text = cmd2.ExecuteScalar().ToString() + " Tác giả";
+                // 3. Giao dịch (hóa đơn) theo trạng thái
+                DataTable dtGiaoDich = DbHelper.ExecuteQuery(@"
+                    SELECT COUNT(*) AS Tong,
+                           SUM(CASE WHEN TrangThai = N'Chờ thanh toán' THEN 1 ELSE 0 END) AS ChoThanhToan,
+                           SUM(CASE WHEN TrangThai = N'Đã thanh toán' THEN 1 ELSE 0 END) AS DaThanhToan,
+                           SUM(CASE WHEN TrangThai = N'Đã hủy' THEN 1 ELSE 0 END) AS DaHuy
+                    FROM HoaDon");
+                DataRow gd = dtGiaoDich.Rows[0];
+                lbl_TongGiaoDich.Text = gd["Tong"] + " Giao dịch";
+                lbl_GiaoDichPhu.Text = string.Format("Chờ TT: {0}  |  Đã TT: {1}  |  Hủy: {2}",
+                    ToInt(gd["ChoThanhToan"]), ToInt(gd["DaThanhToan"]), ToInt(gd["DaHuy"]));
 
-                    // 3. Đếm tổng bài viết
-                    SqlCommand cmd3 = new SqlCommand("SELECT COUNT(*) FROM BaiVietBao", conn);
-                    lbl_TongDoanhThu.Text = cmd3.ExecuteScalar().ToString() + " Bài viết";
-                }
+                // 4. Tổng tiền: chỉ tính hóa đơn đã thanh toán.
+                //    Quảng cáo + Gói bài đăng là tiền thu, Nhuận bút là tiền chi.
+                DataTable dtTien = DbHelper.ExecuteQuery(@"
+                    SELECT ISNULL(SUM(CASE WHEN ct.LoaiGiaoDich <> N'Nhuận bút' THEN ct.ThanhTien END), 0) AS TongThu,
+                           ISNULL(SUM(CASE WHEN ct.LoaiGiaoDich = N'Nhuận bút' THEN ct.ThanhTien END), 0) AS TongChi
+                    FROM ChiTietHoaDon ct
+                    INNER JOIN HoaDon h ON ct.MaHoaDon = h.MaHoaDon
+                    WHERE h.TrangThai = N'Đã thanh toán'");
+                decimal tongThu = Convert.ToDecimal(dtTien.Rows[0]["TongThu"]);
+                decimal tongChi = Convert.ToDecimal(dtTien.Rows[0]["TongChi"]);
+                lbl_TongDoanhThu.Text = FormatTien(tongThu - tongChi);
+                lbl_TongTienPhu.Text = "Thu: " + FormatTien(tongThu) + "  |  Nhuận bút: " + FormatTien(tongChi);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Không thể tải dữ liệu!\nLỗi: " + ex.Message, "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không thể tải dữ liệu!\nLỗi: " + DbHelper.GetErrorMessage(ex), "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private Form activeForm = null;
+
+        private static int ToInt(object value)
+        {
+            return value == DBNull.Value ? 0 : Convert.ToInt32(value);
+        }
+
+        public static string FormatTien(decimal soTien)
+        {
+            return soTien.ToString("#,##0", new System.Globalization.CultureInfo("vi-VN")) + " đ";
+        }
+
+        private Form? activeForm = null;
 
         private void OpenChildForm(Form childForm)
         {
@@ -105,9 +134,8 @@ namespace QuanLyWebTinTuc
             DialogResult rs = MessageBox.Show("Bạn có muốn đăng xuất không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (rs == DialogResult.Yes)
             {
-                this.Hide();
-                frmLogin login = new frmLogin();
-                login.ShowDialog();
+                // Đóng form chính, frmLogin sẽ tự hiện lại
+                DaDangXuat = true;
                 this.Close();
             }
         }

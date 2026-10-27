@@ -1,0 +1,289 @@
+USE QuanLyTrangWebTinTuc;
+GO
+
+-- 1. Bảng TacGiaTinTuc
+CREATE TABLE TacGiaTinTuc (
+    MaTacGia VARCHAR(20) PRIMARY KEY,
+    HoTen NVARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE,
+    SDT VARCHAR(20),
+    ButDanh NVARCHAR(50)
+);
+
+-- 2. Bảng ChuyenMucTin
+CREATE TABLE ChuyenMucTin (
+    MaChuyenMuc VARCHAR(20) PRIMARY KEY,
+    TenChuyenMuc NVARCHAR(100) NOT NULL,
+    MoTa NVARCHAR(MAX)
+);
+
+-- 3. Bảng DocGiaWeb
+CREATE TABLE DocGiaWeb (
+    MaDocGia VARCHAR(20) PRIMARY KEY,
+    HoTen NVARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE,
+    MatKhau VARCHAR(255) NOT NULL,
+    NgayDangKy DATETIME DEFAULT GETDATE()
+);
+
+-- 4. Bảng BaiVietBao
+CREATE TABLE BaiVietBao (
+    MaBaiViet VARCHAR(20) PRIMARY KEY,
+    TieuDe NVARCHAR(255) NOT NULL,
+    TomTat NVARCHAR(MAX),
+    NoiDung NVARCHAR(MAX),
+    NgayDang DATETIME DEFAULT GETDATE(),
+    LuotXem INT DEFAULT 0,
+    MaTacGia VARCHAR(20) NOT NULL,
+    MaChuyenMuc VARCHAR(20) NOT NULL,
+    FOREIGN KEY (MaTacGia) REFERENCES TacGiaTinTuc(MaTacGia),
+    FOREIGN KEY (MaChuyenMuc) REFERENCES ChuyenMucTin(MaChuyenMuc)
+);
+
+-- 5. Bảng BinhLuanTinTuc
+CREATE TABLE BinhLuanTinTuc (
+    MaBinhLuan VARCHAR(20) PRIMARY KEY,
+    NoiDungBL NVARCHAR(MAX) NOT NULL,
+    ThoiGianBL DATETIME DEFAULT GETDATE(),
+    MaDocGia VARCHAR(20) NOT NULL,
+    MaBaiViet VARCHAR(20) NOT NULL,
+    FOREIGN KEY (MaDocGia) REFERENCES DocGiaWeb(MaDocGia),
+    FOREIGN KEY (MaBaiViet) REFERENCES BaiVietBao(MaBaiViet) ON DELETE CASCADE
+);
+GO
+
+
+
+USE QuanLyTrangWebTinTuc;
+GO
+
+-- 1. Thêm dữ liệu Tác giả (Bắt buộc phải chạy trước BaiVietBao)
+INSERT INTO TacGiaTinTuc (MaTacGia, HoTen, Email, SDT, ButDanh) VALUES
+('TG01', N'Nguyễn Văn A', 'nguyena@newswave.com', '0901234567', N'An Nguyễn'),
+('TG02', N'Trần Thị B', 'tranb@newswave.com', '0912345678', N'Bảo Trần');
+GO
+
+-- 2. Thêm dữ liệu Chuyên mục (Bắt buộc phải chạy trước BaiVietBao)
+INSERT INTO ChuyenMucTin (MaChuyenMuc, TenChuyenMuc, MoTa) VALUES
+('CM01', N'Thời sự', N'Tin tức thời sự trong và ngoài nước'),
+('CM02', N'Công nghệ', N'Xu hướng và tin tức công nghệ mới');
+GO
+
+-- 3. Thêm dữ liệu Độc giả
+INSERT INTO DocGiaWeb (MaDocGia, HoTen, Email, MatKhau) VALUES
+('DG01', N'Lê Văn C', 'lec@gmail.com', 'hashed_pass_123'),
+('DG02', N'Phạm Thị D', 'phamd@gmail.com', 'hashed_pass_456');
+GO
+
+-- 4. Thêm dữ liệu Bài viết
+INSERT INTO BaiVietBao (MaBaiViet, TieuDe, TomTat, NoiDung, NgayDang, LuotXem, MaTacGia, MaChuyenMuc) VALUES
+('BV01', N'Xu hướng AI năm 2026', N'Trí tuệ nhân tạo phát triển vượt bậc', N'Nội dung chi tiết bài viết AI...', GETDATE(), 150, 'TG01', 'CM02'),
+('BV02', N'Tình hình giao thông đô thị', N'Cập nhật hạ tầng giao thông', N'Nội dung giao thông...', GETDATE(), 45, 'TG02', 'CM01'),
+('BV03', N'Đổi mới giáo dục đại học', N'Áp dụng công nghệ vào giảng dạy', N'Nội dung đổi mới giáo dục...', DATEADD(DAY, -10, GETDATE()), 300, 'TG01', 'CM01');
+GO
+
+-- 5. Thêm dữ liệu Bình luận
+INSERT INTO BinhLuanTinTuc (MaBinhLuan, NoiDungBL, ThoiGianBL, MaDocGia, MaBaiViet) VALUES
+('BL01', N'Bài viết rất hay và bổ ích!', GETDATE(), 'DG01', 'BV01'),
+('BL02', N'Tôi đồng ý với quan điểm này.', GETDATE(), 'DG02', 'BV01'),
+('BL03', N'Cần cải thiện thêm giao thông công cộng.', GETDATE(), 'DG01', 'BV02');
+GO
+
+SELECT * FROM TacGiaTinTuc;
+SELECT * FROM ChuyenMucTin;
+SELECT * FROM DocGiaWeb;
+SELECT * FROM BaiVietBao;
+SELECT * FROM BinhLuanTinTuc;
+GO
+
+
+CREATE VIEW V_DanhSachChuaXuLy AS
+SELECT 
+    b.MaBaiViet,
+    b.TieuDe,
+    b.NgayDang,
+    b.LuotXem,
+    t.HoTen AS TenTacGia,
+    c.TenChuyenMuc
+FROM BaiVietBao b
+INNER JOIN TacGiaTinTuc t ON b.MaTacGia = t.MaTacGia
+INNER JOIN ChuyenMucTin c ON b.MaChuyenMuc = c.MaChuyenMuc
+WHERE b.LuotXem < 100 
+  AND b.NgayDang >= DATEADD(DAY, -7, GETDATE());
+GO
+
+CREATE VIEW V_ThongKeTongHop AS
+SELECT 
+    c.MaChuyenMuc,
+    c.TenChuyenMuc,
+    COUNT(DISTINCT b.MaBaiViet) AS TongSoBaiViet,
+    ISNULL(SUM(b.LuotXem), 0) AS TongLuotXem,
+    COUNT(bl.MaBinhLuan) AS TongSoBinhLuan
+FROM ChuyenMucTin c
+LEFT JOIN BaiVietBao b ON c.MaChuyenMuc = b.MaChuyenMuc
+LEFT JOIN BinhLuanTinTuc bl ON b.MaBaiViet = bl.MaBaiViet
+GROUP BY c.MaChuyenMuc, c.TenChuyenMuc;
+GO
+
+CREATE PROCEDURE P_DanhSachGiaoDich
+    @MaChuyenMuc VARCHAR(20),
+    @TongSoBai INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- L?y danh sách bài vi?t thu?c chuyên m?c
+    SELECT 
+        b.MaBaiViet,
+        b.TieuDe,
+        b.NgayDang,
+        b.LuotXem,
+        t.HoTen AS TenTacGia
+    FROM BaiVietBao b
+    INNER JOIN TacGiaTinTuc t ON b.MaTacGia = t.MaTacGia
+    WHERE b.MaChuyenMuc = @MaChuyenMuc
+    ORDER BY b.NgayDang DESC;
+
+    -- Gán giá tr? cho tham s? Output
+    SELECT @TongSoBai = COUNT(*) 
+    FROM BaiVietBao 
+    WHERE MaChuyenMuc = @MaChuyenMuc;
+END;
+GO
+
+CREATE PROCEDURE P_ThemSuaXoa
+    @Action VARCHAR(10), -- 'INSERT', 'UPDATE', 'DELETE'
+    @MaBaiViet VARCHAR(20),
+    @TieuDe NVARCHAR(255) = NULL,
+    @TomTat NVARCHAR(MAX) = NULL,
+    @NoiDung NVARCHAR(MAX) = NULL,
+    @MaTacGia VARCHAR(20) = NULL,
+    @MaChuyenMuc VARCHAR(20) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @Action = 'INSERT'
+    BEGIN
+        IF EXISTS (SELECT 1 FROM BaiVietBao WHERE MaBaiViet = @MaBaiViet)
+        BEGIN
+            RAISERROR(N'Mã bài viết đã tồn tại trong hệ thống!', 16, 1);
+            RETURN;
+        END
+
+        INSERT INTO BaiVietBao (MaBaiViet, TieuDe, TomTat, NoiDung, NgayDang, LuotXem, MaTacGia, MaChuyenMuc)
+        VALUES (@MaBaiViet, @TieuDe, @TomTat, @NoiDung, GETDATE(), 0, @MaTacGia, @MaChuyenMuc);
+    END
+    ELSE IF @Action = 'UPDATE'
+    BEGIN
+        IF NOT EXISTS (SELECT 1 FROM BaiVietBao WHERE MaBaiViet = @MaBaiViet)
+        BEGIN
+            RAISERROR(N'Không tìm thấy bài viết để cập nhật!', 16, 1);
+            RETURN;
+        END
+
+        UPDATE BaiVietBao
+        SET TieuDe = ISNULL(@TieuDe, TieuDe),
+            TomTat = ISNULL(@TomTat, TomTat),
+            NoiDung = ISNULL(@NoiDung, NoiDung),
+            MaChuyenMuc = ISNULL(@MaChuyenMuc, MaChuyenMuc)
+        WHERE MaBaiViet = @MaBaiViet;
+    END
+    ELSE IF @Action = 'DELETE'
+    BEGIN
+        IF NOT EXISTS (SELECT 1 FROM BaiVietBao WHERE MaBaiViet = @MaBaiViet)
+        BEGIN
+            RAISERROR(N'Không tìm thấy bài viết để xóa!', 16, 1);
+            RETURN;
+        END
+
+        DELETE FROM BaiVietBao WHERE MaBaiViet = @MaBaiViet;
+    END
+    ELSE
+    BEGIN
+        RAISERROR(N'Hành động không hợp lệ! Chỉ chấp nhận INSERT, UPDATE, hoặc DELETE.', 16, 1);
+    END
+END;
+GO
+
+CREATE FUNCTION F_TinhTongGiaTri
+(
+    @MaTacGia VARCHAR(20)
+)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @TongLuotTuongTac INT;
+
+    SELECT @TongLuotTuongTac = COUNT(bl.MaBinhLuan)
+    FROM BinhLuanTinTuc bl
+    INNER JOIN BaiVietBao b ON bl.MaBaiViet = b.MaBaiViet
+    WHERE b.MaTacGia = @MaTacGia;
+
+    RETURN ISNULL(@TongLuotTuongTac, 0);
+END;
+GO
+
+CREATE TRIGGER TR_KiemTraNgayDangBai
+ON BaiVietBao
+FOR INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF EXISTS (
+        SELECT 1 
+        FROM inserted 
+        WHERE NgayDang > GETDATE()
+    )
+    BEGIN
+        RAISERROR(N'L?i: Ngày đăng bài viết không được lớn hơn thời gian hiển thị', 16, 1);
+        ROLLBACK TRANSACTION;
+        RETURN;
+    END
+END;
+GO
+
+-- 1. Tạo Login trên hệ thống
+CREATE LOGIN Login_NewsAdmin WITH PASSWORD = 'admin';
+CREATE LOGIN Login_NewsStaff WITH PASSWORD = '111';
+GO
+
+-- 2. Tạo User tương ứng trong cơ sở dữ liệu hiện tại
+CREATE USER User_NewsAdmin FOR LOGIN Login_NewsAdmin;
+CREATE USER User_NewsStaff FOR LOGIN Login_NewsStaff;
+GO
+
+-- 3. Tạo các Vai trò (Database Roles) cho hệ thống
+CREATE ROLE Role_Admin;
+CREATE ROLE Role_Staff;
+GO
+
+-- Gán User vào Role
+ALTER ROLE Role_Admin ADD MEMBER User_NewsAdmin;
+ALTER ROLE Role_Staff ADD MEMBER User_NewsStaff;
+GO
+
+-- 4. PHÂN QUYỀN CHI TIẾT (GRANT / REVOKE)
+
+--- a) Phân quyền cho Nhóm Admin (Role_Admin): Toàn quyền quản trị
+-- Lưu ý: Quyền CONTROL đã bao hàm toàn quyền trên database, 
+-- nhưng viết rõ SELECT, INSERT, UPDATE, DELETE cũng rất tốt để làm tài liệu.
+GRANT CONTROL, SELECT, INSERT, UPDATE, DELETE ON DATABASE::NewsWave TO Role_Admin;
+GO
+
+--- b) Phân quyền cho Nhóm Nhân viên/Biên tập viên (Role_Staff):
+-- Cho phép đọc tất cả các bảng và view
+GRANT SELECT ON V_DanhSachChuaXuLy TO Role_Staff;
+GRANT SELECT ON V_ThongKeTongHop TO Role_Staff;
+GRANT SELECT ON BaiVietBao TO Role_Staff;
+GRANT SELECT ON ChuyenMucTin TO Role_Staff;
+
+-- Cho phép thực thi Stored Procedure và Function nghiệp vụ
+GRANT EXECUTE ON P_DanhSachGiaoDich TO Role_Staff;
+GRANT EXECUTE ON P_ThemSuaXoa TO Role_Staff;
+GRANT EXECUTE ON F_TinhTongGiaTri TO Role_Staff;
+
+-- Thu hồi quyền DELETE trực tiếp trên bảng bài viết (bắt buộc dùng SP hoặc thông qua Admin)
+REVOKE DELETE ON BaiVietBao FROM Role_Staff;
+GO

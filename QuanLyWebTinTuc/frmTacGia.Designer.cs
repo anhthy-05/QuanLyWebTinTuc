@@ -80,12 +80,12 @@
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            btn_TimKiem = new Guna.UI2.WinForms.Guna2Button();
+            txt_TimKiem = new Guna.UI2.WinForms.Guna2TextBox();
             tableLayoutPanel2 = new TableLayoutPanel();
             guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
+            dgv_TacGia = new Guna.UI2.WinForms.Guna2DataGridView();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -97,6 +97,7 @@
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
             pnl_TacGia.SuspendLayout();
             guna2GroupBox1.SuspendLayout();
             guna2Panel2.SuspendLayout();
@@ -104,7 +105,7 @@
             guna2Panel3.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             guna2Panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_TacGia).BeginInit();
             guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -114,6 +115,7 @@
             pnl_TacGia.Controls.Add(guna2Panel2);
             pnl_TacGia.Controls.Add(guna2Panel1);
             pnl_TacGia.CustomizableEdges = customizableEdges33;
+            pnl_TacGia.AutoScroll = true;
             pnl_TacGia.Dock = DockStyle.Fill;
             pnl_TacGia.Location = new Point(0, 0);
             pnl_TacGia.Name = "pnl_TacGia";
@@ -163,6 +165,7 @@
             btn_LamMoi.Size = new Size(149, 56);
             btn_LamMoi.TabIndex = 9;
             btn_LamMoi.Text = "Làm mới";
+            btn_LamMoi.Click += btn_LamMoi_Click;
             // 
             // btn_Xoa
             // 
@@ -180,6 +183,7 @@
             btn_Xoa.Size = new Size(149, 56);
             btn_Xoa.TabIndex = 8;
             btn_Xoa.Text = "Xóa";
+            btn_Xoa.Click += btn_Xoa_Click;
             // 
             // btn_Sua
             // 
@@ -197,6 +201,7 @@
             btn_Sua.Size = new Size(149, 56);
             btn_Sua.TabIndex = 7;
             btn_Sua.Text = "Sửa";
+            btn_Sua.Click += btn_Sua_Click;
             // 
             // btn_Them
             // 
@@ -214,11 +219,12 @@
             btn_Them.Size = new Size(149, 56);
             btn_Them.TabIndex = 6;
             btn_Them.Text = "Thêm ";
+            btn_Them.Click += btn_Them_Click;
             // 
             // txt_ButDanh
             // 
             txt_ButDanh.CustomizableEdges = customizableEdges13;
-            txt_ButDanh.DefaultText = "Thông tin giới thiệu về tác giả...";
+            txt_ButDanh.DefaultText = "";
             txt_ButDanh.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txt_ButDanh.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txt_ButDanh.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -229,7 +235,7 @@
             txt_ButDanh.Location = new Point(25, 239);
             txt_ButDanh.Margin = new Padding(3, 4, 3, 4);
             txt_ButDanh.Name = "txt_ButDanh";
-            txt_ButDanh.PlaceholderText = "";
+            txt_ButDanh.PlaceholderText = "Nhập bút danh / giới thiệu ngắn";
             txt_ButDanh.SelectedText = "";
             txt_ButDanh.ShadowDecoration.CustomizableEdges = customizableEdges14;
             txt_ButDanh.Size = new Size(990, 41);
@@ -238,7 +244,7 @@
             // txt_Email
             // 
             txt_Email.CustomizableEdges = customizableEdges15;
-            txt_Email.DefaultText = "Nhập email";
+            txt_Email.DefaultText = "";
             txt_Email.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txt_Email.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txt_Email.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -249,7 +255,7 @@
             txt_Email.Location = new Point(25, 162);
             txt_Email.Margin = new Padding(3, 4, 3, 4);
             txt_Email.Name = "txt_Email";
-            txt_Email.PlaceholderText = "";
+            txt_Email.PlaceholderText = "Nhập email";
             txt_Email.SelectedText = "";
             txt_Email.ShadowDecoration.CustomizableEdges = customizableEdges16;
             txt_Email.Size = new Size(472, 41);
@@ -258,7 +264,7 @@
             // txt_MaTacGia
             // 
             txt_MaTacGia.CustomizableEdges = customizableEdges17;
-            txt_MaTacGia.DefaultText = "Tự động tạo hoặc nhập mã";
+            txt_MaTacGia.DefaultText = "";
             txt_MaTacGia.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txt_MaTacGia.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txt_MaTacGia.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -269,7 +275,7 @@
             txt_MaTacGia.Location = new Point(25, 83);
             txt_MaTacGia.Margin = new Padding(3, 4, 3, 4);
             txt_MaTacGia.Name = "txt_MaTacGia";
-            txt_MaTacGia.PlaceholderText = "";
+            txt_MaTacGia.PlaceholderText = "Để trống để tự tạo mã (VD: TG05)";
             txt_MaTacGia.SelectedText = "";
             txt_MaTacGia.ShadowDecoration.CustomizableEdges = customizableEdges18;
             txt_MaTacGia.Size = new Size(472, 41);
@@ -333,8 +339,8 @@
             // 
             // guna2Panel3
             // 
-            guna2Panel3.Controls.Add(guna2Button1);
-            guna2Panel3.Controls.Add(guna2TextBox1);
+            guna2Panel3.Controls.Add(btn_TimKiem);
+            guna2Panel3.Controls.Add(txt_TimKiem);
             guna2Panel3.CustomizableEdges = customizableEdges25;
             guna2Panel3.Dock = DockStyle.Fill;
             guna2Panel3.Location = new Point(3, 3);
@@ -343,41 +349,43 @@
             guna2Panel3.Size = new Size(1053, 54);
             guna2Panel3.TabIndex = 1;
             // 
-            // guna2Button1
+            // btn_TimKiem
             // 
-            guna2Button1.CustomizableEdges = customizableEdges21;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.Font = new Font("Segoe UI", 9F);
-            guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(986, 8);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            guna2Button1.Size = new Size(49, 39);
-            guna2Button1.TabIndex = 1;
-            guna2Button1.Text = "guna2Button1";
+            btn_TimKiem.CustomizableEdges = customizableEdges21;
+            btn_TimKiem.DisabledState.BorderColor = Color.DarkGray;
+            btn_TimKiem.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_TimKiem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btn_TimKiem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btn_TimKiem.Font = new Font("Segoe UI", 9F);
+            btn_TimKiem.ForeColor = Color.White;
+            btn_TimKiem.Location = new Point(956, 8);
+            btn_TimKiem.Name = "btn_TimKiem";
+            btn_TimKiem.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            btn_TimKiem.Size = new Size(80, 39);
+            btn_TimKiem.TabIndex = 1;
+            btn_TimKiem.Text = "Tìm";
+            btn_TimKiem.Click += btn_TimKiem_Click;
             // 
-            // guna2TextBox1
+            // txt_TimKiem
             // 
-            guna2TextBox1.CustomizableEdges = customizableEdges23;
-            guna2TextBox1.DefaultText = "Nhập tên chuyên mục";
-            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Segoe UI", 9F);
-            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(9, 9);
-            guna2TextBox1.Margin = new Padding(3, 4, 3, 4);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PlaceholderText = "";
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            guna2TextBox1.Size = new Size(967, 38);
-            guna2TextBox1.TabIndex = 0;
+            txt_TimKiem.CustomizableEdges = customizableEdges23;
+            txt_TimKiem.DefaultText = "";
+            txt_TimKiem.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_TimKiem.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_TimKiem.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_TimKiem.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_TimKiem.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_TimKiem.Font = new Font("Segoe UI", 9F);
+            txt_TimKiem.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_TimKiem.Location = new Point(9, 9);
+            txt_TimKiem.Margin = new Padding(3, 4, 3, 4);
+            txt_TimKiem.Name = "txt_TimKiem";
+            txt_TimKiem.PlaceholderText = "Tìm theo mã, họ tên, email, bút danh...";
+            txt_TimKiem.SelectedText = "";
+            txt_TimKiem.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            txt_TimKiem.Size = new Size(937, 38);
+            txt_TimKiem.TabIndex = 0;
+            txt_TimKiem.TextChanged += txt_TimKiem_TextChanged;
             // 
             // tableLayoutPanel2
             // 
@@ -385,7 +393,7 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Controls.Add(guna2Panel4, 0, 0);
-            tableLayoutPanel2.Controls.Add(guna2DataGridView1, 0, 1);
+            tableLayoutPanel2.Controls.Add(dgv_TacGia, 0, 1);
             tableLayoutPanel2.Location = new Point(3, 63);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
@@ -414,10 +422,10 @@
             guna2HtmlLabel3.TabIndex = 0;
             guna2HtmlLabel3.Text = "Danh sách tác giả";
             // 
-            // guna2DataGridView1
+            // dgv_TacGia
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
-            guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgv_TacGia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -425,10 +433,10 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            guna2DataGridView1.ColumnHeadersHeight = 22;
-            guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
+            dgv_TacGia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgv_TacGia.ColumnHeadersHeight = 22;
+            dgv_TacGia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv_TacGia.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -436,19 +444,20 @@
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(3, 55);
-            guna2DataGridView1.Name = "guna2DataGridView1";
-            guna2DataGridView1.RowHeadersVisible = false;
-            guna2DataGridView1.RowHeadersWidth = 51;
-            guna2DataGridView1.Size = new Size(1032, 205);
-            guna2DataGridView1.TabIndex = 1;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
-            guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 22;
-            guna2DataGridView1.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
-            guna2DataGridView1.ThemeStyle.RowsStyle.Height = 29;
+            dgv_TacGia.DefaultCellStyle = dataGridViewCellStyle3;
+            dgv_TacGia.GridColor = Color.FromArgb(231, 229, 255);
+            dgv_TacGia.Location = new Point(3, 55);
+            dgv_TacGia.Name = "dgv_TacGia";
+            dgv_TacGia.RowHeadersVisible = false;
+            dgv_TacGia.RowHeadersWidth = 51;
+            dgv_TacGia.Size = new Size(1032, 205);
+            dgv_TacGia.TabIndex = 1;
+            dgv_TacGia.CellClick += dgv_TacGia_CellClick;
+            dgv_TacGia.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgv_TacGia.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+            dgv_TacGia.ThemeStyle.HeaderStyle.Height = 22;
+            dgv_TacGia.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+            dgv_TacGia.ThemeStyle.RowsStyle.Height = 29;
             // 
             // guna2Panel1
             // 
@@ -469,7 +478,7 @@
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(308, 22);
             guna2HtmlLabel2.TabIndex = 3;
-            guna2HtmlLabel2.Text = "Quản lý danh sách chuyên mục trong hệ thống";
+            guna2HtmlLabel2.Text = "Quản lý danh sách tác giả trong hệ thống";
             // 
             // guna2HtmlLabel1
             // 
@@ -484,7 +493,7 @@
             // txt_SDT
             // 
             txt_SDT.CustomizableEdges = customizableEdges1;
-            txt_SDT.DefaultText = "Nhập số điện thoại";
+            txt_SDT.DefaultText = "";
             txt_SDT.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txt_SDT.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txt_SDT.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -495,7 +504,7 @@
             txt_SDT.Location = new Point(543, 162);
             txt_SDT.Margin = new Padding(3, 4, 3, 4);
             txt_SDT.Name = "txt_SDT";
-            txt_SDT.PlaceholderText = "";
+            txt_SDT.PlaceholderText = "Nhập số điện thoại";
             txt_SDT.SelectedText = "";
             txt_SDT.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txt_SDT.Size = new Size(472, 41);
@@ -504,7 +513,7 @@
             // txt_HoTen
             // 
             txt_HoTen.CustomizableEdges = customizableEdges3;
-            txt_HoTen.DefaultText = "Nhập họ tên";
+            txt_HoTen.DefaultText = "";
             txt_HoTen.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txt_HoTen.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txt_HoTen.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -515,7 +524,7 @@
             txt_HoTen.Location = new Point(543, 85);
             txt_HoTen.Margin = new Padding(3, 4, 3, 4);
             txt_HoTen.Name = "txt_HoTen";
-            txt_HoTen.PlaceholderText = "";
+            txt_HoTen.PlaceholderText = "Nhập họ tên";
             txt_HoTen.SelectedText = "";
             txt_HoTen.ShadowDecoration.CustomizableEdges = customizableEdges4;
             txt_HoTen.Size = new Size(472, 41);
@@ -543,27 +552,38 @@
             // 
             // Column1
             // 
+            Column1.DataPropertyName = "MaTacGia";
             Column1.HeaderText = "Mã";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
             // 
             // Column2
             // 
+            Column2.DataPropertyName = "HoTen";
             Column2.HeaderText = "Họ tên";
             Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
             // 
             // Column3
             // 
+            Column3.DataPropertyName = "Email";
             Column3.HeaderText = "Email";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
             // 
             // Column4
             // 
-            Column4.HeaderText = "Trạng thái";
+            Column4.DataPropertyName = "SDT";
+            Column4.HeaderText = "Số điện thoại";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            Column5.DataPropertyName = "ButDanh";
+            Column5.HeaderText = "Bút danh";
+            Column5.MinimumWidth = 6;
+            Column5.Name = "Column5";
             // 
             // frmTacGia
             // 
@@ -572,7 +592,8 @@
             ClientSize = new Size(1038, 967);
             Controls.Add(pnl_TacGia);
             Name = "frmTacGia";
-            Text = "frmTacGia";
+            Text = "Tác giả";
+            Load += frmTacGia_Load;
             pnl_TacGia.ResumeLayout(false);
             guna2GroupBox1.ResumeLayout(false);
             guna2GroupBox1.PerformLayout();
@@ -582,7 +603,7 @@
             tableLayoutPanel2.ResumeLayout(false);
             guna2Panel4.ResumeLayout(false);
             guna2Panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_TacGia).EndInit();
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
             ResumeLayout(false);
@@ -609,12 +630,12 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private TableLayoutPanel tableLayoutPanel1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Guna.UI2.WinForms.Guna2Button btn_TimKiem;
+        private Guna.UI2.WinForms.Guna2TextBox txt_TimKiem;
         private TableLayoutPanel tableLayoutPanel2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
-        private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
+        private Guna.UI2.WinForms.Guna2DataGridView dgv_TacGia;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
@@ -622,5 +643,6 @@
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column5;
     }
 }
