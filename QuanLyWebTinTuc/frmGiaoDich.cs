@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
+using QuanLyWebTinTuc.Model;
 
 namespace QuanLyWebTinTuc
 {
@@ -21,6 +22,10 @@ namespace QuanLyWebTinTuc
             InitializeComponent();
             DbHelper.SetupGrid(dgv_HoaDon);
             DbHelper.SetupGrid(dgv_ChiTiet);
+
+            // Nhân viên chỉ được xem giao dịch, không được thêm / sửa / xóa
+            foreach (Control btn in new Control[] { btn_ThemHD, btn_Them, btn_Sua, btn_Xoa, btn_ThemCT, btn_SuaCT, btn_XoaCT })
+                btn.Enabled = PhienDangNhap.LaAdmin;
         }
 
         private void frmGiaoDich_Load(object sender, EventArgs e)

@@ -5,15 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using QuanLyWebTinTuc.Model;
 
 namespace QuanLyWebTinTuc
 {
     public partial class frmLogin : Form
     {
-        // Tài khoản đăng nhập mặc định
-        private const string TaiKhoan = "admin";
-        private const string MatKhau = "111";
-
         public frmLogin()
         {
             InitializeComponent();
@@ -50,10 +47,22 @@ namespace QuanLyWebTinTuc
                 return;
             }
 
-            if (txt_TaiKhoan.Text.Trim() != TaiKhoan || txt_MatKhau.Text != MatKhau)
+            // Kiểm tra tài khoản trong bảng TaiKhoan (lấy luôn vai trò để phân quyền)
+            string? loi;
+            try
+            {
+                loi = PhienDangNhap.DangNhap(txt_TaiKhoan.Text.Trim(), txt_MatKhau.Text);
+            }
+            catch (Exception ex)
+            {
+                DbHelper.ShowError(ex);
+                return;
+            }
+
+            if (loi != null)
             {
                 MessageBox.Show(
-                    "Tài khoản hoặc mật khẩu không đúng!",
+                    loi,
                     "Đăng nhập thất bại",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -70,6 +79,7 @@ namespace QuanLyWebTinTuc
                 if (main.DaDangXuat)
                 {
                     // Đăng xuất -> quay lại màn hình đăng nhập
+                    PhienDangNhap.DangXuat();
                     txt_MatKhau.Clear();
                     chk_HienMatKhau.Checked = false;
                     Show();

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using QuanLyWebTinTuc.Model;
 
 namespace QuanLyWebTinTuc
 {
@@ -16,6 +17,7 @@ namespace QuanLyWebTinTuc
         {
             InitializeComponent();
             DbHelper.SetupGrid(dgv_TacGia);
+            btn_Xoa.Enabled = PhienDangNhap.LaAdmin; // Chỉ Admin được xóa
         }
 
         private void frmTacGia_Load(object sender, EventArgs e)

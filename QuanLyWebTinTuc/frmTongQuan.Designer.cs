@@ -97,9 +97,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges58 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges63 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges64 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges69 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges70 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel23 = new Guna.UI2.WinForms.Guna2Panel();
             btn_DangXuat = new Guna.UI2.WinForms.Guna2Button();
+            btn_TaiKhoan = new Guna.UI2.WinForms.Guna2Button();
             btn_GiaoDich = new Guna.UI2.WinForms.Guna2Button();
             btn_TacGia = new Guna.UI2.WinForms.Guna2Button();
             btn_ChuyenMuc = new Guna.UI2.WinForms.Guna2Button();
@@ -192,6 +195,7 @@
             // 
             guna2Panel1.Controls.Add(guna2Panel23);
             guna2Panel1.Controls.Add(btn_DangXuat);
+            guna2Panel1.Controls.Add(btn_TaiKhoan);
             guna2Panel1.Controls.Add(btn_GiaoDich);
             guna2Panel1.Controls.Add(btn_TacGia);
             guna2Panel1.Controls.Add(btn_ChuyenMuc);
@@ -228,9 +232,27 @@
             btn_DangXuat.Name = "btn_DangXuat";
             btn_DangXuat.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btn_DangXuat.Size = new Size(174, 56);
-            btn_DangXuat.TabIndex = 5;
+            btn_DangXuat.TabIndex = 6;
             btn_DangXuat.Text = "Đăng xuất";
             btn_DangXuat.Click += btn_DangXuat_Click;
+            //
+            // btn_TaiKhoan
+            //
+            btn_TaiKhoan.BorderRadius = 10;
+            btn_TaiKhoan.CustomizableEdges = customizableEdges69;
+            btn_TaiKhoan.DisabledState.BorderColor = Color.DarkGray;
+            btn_TaiKhoan.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_TaiKhoan.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btn_TaiKhoan.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btn_TaiKhoan.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_TaiKhoan.ForeColor = Color.White;
+            btn_TaiKhoan.Location = new Point(19, 408);
+            btn_TaiKhoan.Name = "btn_TaiKhoan";
+            btn_TaiKhoan.ShadowDecoration.CustomizableEdges = customizableEdges70;
+            btn_TaiKhoan.Size = new Size(174, 56);
+            btn_TaiKhoan.TabIndex = 5;
+            btn_TaiKhoan.Text = "Tài khoản";
+            btn_TaiKhoan.Click += btn_TaiKhoan_Click;
             // 
             // btn_GiaoDich
             // 
@@ -994,6 +1016,7 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2Button btn_DangXuat;
+        private Guna.UI2.WinForms.Guna2Button btn_TaiKhoan;
         private Guna.UI2.WinForms.Guna2Button btn_GiaoDich;
         private Guna.UI2.WinForms.Guna2Button btn_TacGia;
         private Guna.UI2.WinForms.Guna2Button btn_ChuyenMuc;

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using QuanLyWebTinTuc.Model;
 
 namespace QuanLyWebTinTuc
 {
@@ -17,7 +18,19 @@ namespace QuanLyWebTinTuc
         {
             InitializeComponent();
             KiemTraKetNoi();
+            ApDungPhanQuyen();
         }
+
+        // Hiện tên + vai trò người đăng nhập, chỉ Admin mới thấy menu Tài khoản
+        private void ApDungPhanQuyen()
+        {
+            Text = "Quản lý trang web tin tức - " + PhienDangNhap.HoTen
+                 + " (" + PhienDangNhap.TenVaiTro(PhienDangNhap.VaiTro) + ")";
+            btn_TaiKhoan.Visible = PhienDangNhap.LaAdmin;
+            if (!PhienDangNhap.LaAdmin)
+                btn_DangXuat.Location = btn_TaiKhoan.Location; // Dồn nút Đăng xuất lên chỗ trống
+        }
+
         private void KiemTraKetNoi()
         {
             try
@@ -176,6 +189,12 @@ namespace QuanLyWebTinTuc
         private void btn_GiaoDich_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmGiaoDich());
+        }
+
+        private void btn_TaiKhoan_Click(object sender, EventArgs e)
+        {
+            if (!PhienDangNhap.LaAdmin) return;
+            OpenChildForm(new frmTaiKhoan());
         }
 
         private void pnl_MainContext_Paint(object sender, PaintEventArgs e)

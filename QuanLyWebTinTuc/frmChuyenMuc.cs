@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using QuanLyWebTinTuc.Model;
 
 namespace QuanLyWebTinTuc
 {
@@ -15,6 +16,7 @@ namespace QuanLyWebTinTuc
         {
             InitializeComponent();
             DbHelper.SetupGrid(dgv_ChuyenMuc);
+            btn_Xoa.Enabled = PhienDangNhap.LaAdmin; // Chỉ Admin được xóa
         }
 
         private void frmChuyenMuc_Load(object sender, EventArgs e)

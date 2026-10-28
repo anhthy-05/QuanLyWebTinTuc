@@ -94,6 +94,7 @@ namespace QuanLyWebTinTuc
                     case 2:
                     case 53:
                     case 4060: return "Không kết nối được SQL Server / database QuanLyTrangWebTinTuc!\n" + sqlEx.Message;
+                    case 208: return "Database còn thiếu bảng, hãy chạy các file .sql trong thư mục Database (VD: 04_TaiKhoan.sql)!\n" + sqlEx.Message;
                 }
             }
             return ex.Message;

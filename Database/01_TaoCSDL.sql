@@ -2,6 +2,7 @@
 --  CƠ SỞ DỮ LIỆU: QuanLyTrangWebTinTuc
 --  Chạy file này trên máy CHƯA có database (tạo mới toàn bộ).
 --  Nếu database đã có sẵn, chỉ cần chạy file 03_ThemBangHoaDon.sql
+--  Sau đó chạy tiếp 04_TaiKhoan.sql để tạo tài khoản đăng nhập + phân quyền.
 -- =============================================================
 IF DB_ID(N'QuanLyTrangWebTinTuc') IS NULL
     CREATE DATABASE QuanLyTrangWebTinTuc;

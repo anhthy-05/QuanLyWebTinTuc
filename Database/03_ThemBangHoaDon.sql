@@ -2,6 +2,7 @@
 --  BỔ SUNG CHO DATABASE ĐÃ CÓ SẴN
 --  Thêm 2 bảng HoaDon, ChiTietHoaDon + view V_HoaDonTongTien + dữ liệu mẫu.
 --  (Máy tạo mới database bằng 01_TaoCSDL.sql thì KHÔNG cần chạy file này.)
+--  Chạy xong file này thì chạy tiếp 04_TaiKhoan.sql.
 -- =============================================================
 USE QuanLyTrangWebTinTuc;
 GO
