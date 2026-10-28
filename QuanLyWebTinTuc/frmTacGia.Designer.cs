@@ -32,6 +32,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -61,12 +65,12 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnl_TacGia = new Guna.UI2.WinForms.Guna2Panel();
             guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
+            txt_SDT = new Guna.UI2.WinForms.Guna2TextBox();
+            txt_HoTen = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btn_LamMoi = new Guna.UI2.WinForms.Guna2Button();
             btn_Xoa = new Guna.UI2.WinForms.Guna2Button();
             btn_Sua = new Guna.UI2.WinForms.Guna2Button();
@@ -86,18 +90,14 @@
             guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             dgv_TacGia = new Guna.UI2.WinForms.Guna2DataGridView();
-            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            txt_SDT = new Guna.UI2.WinForms.Guna2TextBox();
-            txt_HoTen = new Guna.UI2.WinForms.Guna2TextBox();
-            guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             pnl_TacGia.SuspendLayout();
             guna2GroupBox1.SuspendLayout();
             guna2Panel2.SuspendLayout();
@@ -111,11 +111,11 @@
             // 
             // pnl_TacGia
             // 
+            pnl_TacGia.AutoScroll = true;
             pnl_TacGia.Controls.Add(guna2GroupBox1);
             pnl_TacGia.Controls.Add(guna2Panel2);
             pnl_TacGia.Controls.Add(guna2Panel1);
             pnl_TacGia.CustomizableEdges = customizableEdges33;
-            pnl_TacGia.AutoScroll = true;
             pnl_TacGia.Dock = DockStyle.Fill;
             pnl_TacGia.Location = new Point(0, 0);
             pnl_TacGia.Name = "pnl_TacGia";
@@ -149,14 +149,77 @@
             guna2GroupBox1.TabIndex = 5;
             guna2GroupBox1.Text = "Thông tin tác giả";
             // 
+            // txt_SDT
+            // 
+            txt_SDT.BorderRadius = 5;
+            txt_SDT.CustomizableEdges = customizableEdges1;
+            txt_SDT.DefaultText = "";
+            txt_SDT.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_SDT.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_SDT.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_SDT.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_SDT.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_SDT.Font = new Font("Segoe UI", 9F);
+            txt_SDT.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_SDT.Location = new Point(543, 162);
+            txt_SDT.Margin = new Padding(3, 4, 3, 4);
+            txt_SDT.Name = "txt_SDT";
+            txt_SDT.PlaceholderText = "Nhập số điện thoại";
+            txt_SDT.SelectedText = "";
+            txt_SDT.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txt_SDT.Size = new Size(472, 41);
+            txt_SDT.TabIndex = 14;
+            // 
+            // txt_HoTen
+            // 
+            txt_HoTen.BorderRadius = 5;
+            txt_HoTen.CustomizableEdges = customizableEdges3;
+            txt_HoTen.DefaultText = "";
+            txt_HoTen.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txt_HoTen.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txt_HoTen.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txt_HoTen.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txt_HoTen.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_HoTen.Font = new Font("Segoe UI", 9F);
+            txt_HoTen.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txt_HoTen.Location = new Point(543, 85);
+            txt_HoTen.Margin = new Padding(3, 4, 3, 4);
+            txt_HoTen.Name = "txt_HoTen";
+            txt_HoTen.PlaceholderText = "Nhập họ tên";
+            txt_HoTen.SelectedText = "";
+            txt_HoTen.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txt_HoTen.Size = new Size(472, 41);
+            txt_HoTen.TabIndex = 13;
+            // 
+            // guna2HtmlLabel7
+            // 
+            guna2HtmlLabel7.BackColor = Color.Transparent;
+            guna2HtmlLabel7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel7.Location = new Point(540, 133);
+            guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            guna2HtmlLabel7.Size = new Size(91, 22);
+            guna2HtmlLabel7.TabIndex = 11;
+            guna2HtmlLabel7.Text = "Số điện thoại";
+            // 
+            // guna2HtmlLabel8
+            // 
+            guna2HtmlLabel8.BackColor = Color.Transparent;
+            guna2HtmlLabel8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel8.Location = new Point(543, 54);
+            guna2HtmlLabel8.Name = "guna2HtmlLabel8";
+            guna2HtmlLabel8.Size = new Size(67, 22);
+            guna2HtmlLabel8.TabIndex = 10;
+            guna2HtmlLabel8.Text = "Họ và tên";
+            // 
             // btn_LamMoi
             // 
+            btn_LamMoi.BorderRadius = 10;
             btn_LamMoi.CustomizableEdges = customizableEdges5;
             btn_LamMoi.DisabledState.BorderColor = Color.DarkGray;
             btn_LamMoi.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_LamMoi.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btn_LamMoi.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btn_LamMoi.FillColor = Color.White;
+            btn_LamMoi.FillColor = Color.FromArgb(255, 255, 192);
             btn_LamMoi.Font = new Font("Segoe UI", 9F);
             btn_LamMoi.ForeColor = Color.Black;
             btn_LamMoi.Location = new Point(843, 305);
@@ -169,6 +232,7 @@
             // 
             // btn_Xoa
             // 
+            btn_Xoa.BorderRadius = 10;
             btn_Xoa.CustomizableEdges = customizableEdges7;
             btn_Xoa.DisabledState.BorderColor = Color.DarkGray;
             btn_Xoa.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -187,6 +251,7 @@
             // 
             // btn_Sua
             // 
+            btn_Sua.BorderRadius = 10;
             btn_Sua.CustomizableEdges = customizableEdges9;
             btn_Sua.DisabledState.BorderColor = Color.DarkGray;
             btn_Sua.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -205,6 +270,7 @@
             // 
             // btn_Them
             // 
+            btn_Them.BorderRadius = 10;
             btn_Them.CustomizableEdges = customizableEdges11;
             btn_Them.DisabledState.BorderColor = Color.DarkGray;
             btn_Them.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -223,6 +289,7 @@
             // 
             // txt_ButDanh
             // 
+            txt_ButDanh.BorderRadius = 5;
             txt_ButDanh.CustomizableEdges = customizableEdges13;
             txt_ButDanh.DefaultText = "";
             txt_ButDanh.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -243,6 +310,7 @@
             // 
             // txt_Email
             // 
+            txt_Email.BorderRadius = 5;
             txt_Email.CustomizableEdges = customizableEdges15;
             txt_Email.DefaultText = "";
             txt_Email.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -263,6 +331,7 @@
             // 
             // txt_MaTacGia
             // 
+            txt_MaTacGia.BorderRadius = 5;
             txt_MaTacGia.CustomizableEdges = customizableEdges17;
             txt_MaTacGia.DefaultText = "";
             txt_MaTacGia.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -351,6 +420,7 @@
             // 
             // btn_TimKiem
             // 
+            btn_TimKiem.BorderRadius = 10;
             btn_TimKiem.CustomizableEdges = customizableEdges21;
             btn_TimKiem.DisabledState.BorderColor = Color.DarkGray;
             btn_TimKiem.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -368,6 +438,7 @@
             // 
             // txt_TimKiem
             // 
+            txt_TimKiem.BorderRadius = 5;
             txt_TimKiem.CustomizableEdges = customizableEdges23;
             txt_TimKiem.DefaultText = "";
             txt_TimKiem.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -452,103 +523,12 @@
             dgv_TacGia.RowHeadersWidth = 51;
             dgv_TacGia.Size = new Size(1032, 205);
             dgv_TacGia.TabIndex = 1;
-            dgv_TacGia.CellClick += dgv_TacGia_CellClick;
             dgv_TacGia.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgv_TacGia.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             dgv_TacGia.ThemeStyle.HeaderStyle.Height = 22;
             dgv_TacGia.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
             dgv_TacGia.ThemeStyle.RowsStyle.Height = 29;
-            // 
-            // guna2Panel1
-            // 
-            guna2Panel1.Controls.Add(guna2HtmlLabel2);
-            guna2Panel1.Controls.Add(guna2HtmlLabel1);
-            guna2Panel1.CustomizableEdges = customizableEdges31;
-            guna2Panel1.Dock = DockStyle.Top;
-            guna2Panel1.Location = new Point(0, 0);
-            guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges32;
-            guna2Panel1.Size = new Size(1038, 150);
-            guna2Panel1.TabIndex = 3;
-            // 
-            // guna2HtmlLabel2
-            // 
-            guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Location = new Point(12, 77);
-            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(308, 22);
-            guna2HtmlLabel2.TabIndex = 3;
-            guna2HtmlLabel2.Text = "Quản lý danh sách tác giả trong hệ thống";
-            // 
-            // guna2HtmlLabel1
-            // 
-            guna2HtmlLabel1.BackColor = Color.Transparent;
-            guna2HtmlLabel1.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2HtmlLabel1.Location = new Point(12, 38);
-            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(164, 33);
-            guna2HtmlLabel1.TabIndex = 2;
-            guna2HtmlLabel1.Text = "Quản lý Tác Giả";
-            // 
-            // txt_SDT
-            // 
-            txt_SDT.CustomizableEdges = customizableEdges1;
-            txt_SDT.DefaultText = "";
-            txt_SDT.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txt_SDT.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txt_SDT.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txt_SDT.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txt_SDT.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txt_SDT.Font = new Font("Segoe UI", 9F);
-            txt_SDT.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txt_SDT.Location = new Point(543, 162);
-            txt_SDT.Margin = new Padding(3, 4, 3, 4);
-            txt_SDT.Name = "txt_SDT";
-            txt_SDT.PlaceholderText = "Nhập số điện thoại";
-            txt_SDT.SelectedText = "";
-            txt_SDT.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txt_SDT.Size = new Size(472, 41);
-            txt_SDT.TabIndex = 14;
-            // 
-            // txt_HoTen
-            // 
-            txt_HoTen.CustomizableEdges = customizableEdges3;
-            txt_HoTen.DefaultText = "";
-            txt_HoTen.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txt_HoTen.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txt_HoTen.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txt_HoTen.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txt_HoTen.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txt_HoTen.Font = new Font("Segoe UI", 9F);
-            txt_HoTen.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txt_HoTen.Location = new Point(543, 85);
-            txt_HoTen.Margin = new Padding(3, 4, 3, 4);
-            txt_HoTen.Name = "txt_HoTen";
-            txt_HoTen.PlaceholderText = "Nhập họ tên";
-            txt_HoTen.SelectedText = "";
-            txt_HoTen.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txt_HoTen.Size = new Size(472, 41);
-            txt_HoTen.TabIndex = 13;
-            // 
-            // guna2HtmlLabel7
-            // 
-            guna2HtmlLabel7.BackColor = Color.Transparent;
-            guna2HtmlLabel7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel7.Location = new Point(540, 133);
-            guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            guna2HtmlLabel7.Size = new Size(91, 22);
-            guna2HtmlLabel7.TabIndex = 11;
-            guna2HtmlLabel7.Text = "Số điện thoại";
-            // 
-            // guna2HtmlLabel8
-            // 
-            guna2HtmlLabel8.BackColor = Color.Transparent;
-            guna2HtmlLabel8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel8.Location = new Point(543, 54);
-            guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            guna2HtmlLabel8.Size = new Size(67, 22);
-            guna2HtmlLabel8.TabIndex = 10;
-            guna2HtmlLabel8.Text = "Họ và tên";
+            dgv_TacGia.CellClick += dgv_TacGia_CellClick;
             // 
             // Column1
             // 
@@ -584,6 +564,37 @@
             Column5.HeaderText = "Bút danh";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
+            // 
+            // guna2Panel1
+            // 
+            guna2Panel1.Controls.Add(guna2HtmlLabel2);
+            guna2Panel1.Controls.Add(guna2HtmlLabel1);
+            guna2Panel1.CustomizableEdges = customizableEdges31;
+            guna2Panel1.Dock = DockStyle.Top;
+            guna2Panel1.Location = new Point(0, 0);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            guna2Panel1.Size = new Size(1059, 150);
+            guna2Panel1.TabIndex = 3;
+            // 
+            // guna2HtmlLabel2
+            // 
+            guna2HtmlLabel2.BackColor = Color.Transparent;
+            guna2HtmlLabel2.Location = new Point(12, 77);
+            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            guna2HtmlLabel2.Size = new Size(275, 22);
+            guna2HtmlLabel2.TabIndex = 3;
+            guna2HtmlLabel2.Text = "Quản lý danh sách tác giả trong hệ thống";
+            // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel1.Location = new Point(12, 38);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(164, 33);
+            guna2HtmlLabel1.TabIndex = 2;
+            guna2HtmlLabel1.Text = "Quản lý Tác Giả";
             // 
             // frmTacGia
             // 

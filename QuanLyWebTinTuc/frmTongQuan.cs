@@ -16,6 +16,24 @@ namespace QuanLyWebTinTuc
         public frmTongQuan()
         {
             InitializeComponent();
+            KiemTraKetNoi();
+        }
+        private void KiemTraKetNoi()
+        {
+            try
+            {
+                object ketQua = DbHelper.ExecuteScalar(
+                    "SELECT DB_NAME()"
+                );
+
+                MessageBox.Show(
+                    "Kết nối thành công!\nDatabase: " + ketQua
+                );
+            }
+            catch (Exception ex)
+            {
+                DbHelper.ShowError(ex);
+            }
         }
 
         private void LoadThongKe()
@@ -166,6 +184,16 @@ namespace QuanLyWebTinTuc
         }
 
         private void pnl_TongQuan_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2Panel17_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
         {
 
         }

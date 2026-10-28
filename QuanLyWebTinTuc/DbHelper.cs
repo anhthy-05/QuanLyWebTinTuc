@@ -6,6 +6,7 @@ namespace QuanLyWebTinTuc
     // Lớp dùng chung để kết nối và chạy câu lệnh SQL
     public static class DbHelper
     {
+
         public static string ConnectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=QuanLyTrangWebTinTuc;Integrated Security=True;TrustServerCertificate=True;";
 
         // Chạy câu SELECT, trả về bảng dữ liệu
